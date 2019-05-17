@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PatientDivisionVisitsSummary>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.HN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th class="d-none d-md-table-cell">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th class="d-none d-md-table-cell">
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th class="d-none d-md-table-cell">
+                    @Html.DisplayNameFor(model => model.Sex)
+                </th>
+                <th class="d-none d-md-table-cell">
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AN)
+                </th>
+
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.WardPre)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Opd)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var classWardPre = item.WardPre > 0 ? "btn-outline-warning" : "btn-light";
+                var classOpd = item.Opd > 0 ? "btn-outline-info" : "btn-light";
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.HN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.FirstName)
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        @Html.DisplayFor(modelItem => Model.LastName)
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        @Html.DisplayFor(modelItem => Model.BirthDate)
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        @Html.DisplayFor(modelItem => Model.Sex)
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        @Html.DisplayFor(modelItem => Model.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.AN)
+                    </td>
+
+                    <td class="text-center">
+                        <a asp-controller="LogBook"
+                           asp-action="Create_WardPre"
+                           asp-route-an="@Model.AN"
+                           class="btn @classWardPre btn-sm btn-block">
+                            @(Model.WardPre == 0 ? "N/A" : Model.WardPre.ToString())
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-controller="LogBook"
+                           asp-action="Create_Opd"
+                           asp-route-an="@Model.AN"
+                           class="btn @classOpd btn-sm btn-block">
+                            @(Model.Opd == 0 ? "N/A" : Model.Opd.ToString())
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
